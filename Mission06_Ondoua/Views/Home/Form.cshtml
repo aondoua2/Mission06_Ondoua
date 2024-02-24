@@ -1,15 +1,24 @@
 ﻿@* For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860 *@
 @{
 }
-@model Application
+@model Movie
+
 
 <h1>Movie Form</h1>
-
 <form method="post">
-
     <div style="margin-bottom: 10px;">
-        <label asp-for="Category" style="width: 100px; text-align: right; display: inline-block;">Category:</label>
-        <input asp-for="Category" style="width: 200px; display: inline-block;" />
+        <label asp-for="MovieId" style="width: 100px; text-align: right; display: inline-block;">MovieId:</label>
+        <input asp-for="MovieId" style="width: 200px; display: inline-block;" />
+    </div>
+    <div style="margin-bottom: 10px;">
+        <label asp-for="CategoryId" style="width: 100px; text-align: right; display: inline-block;">Category:</label>
+        <select asp-for="CategoryId" id="CategoryId" style="width: 200px; display: inline-block;">
+            <option value="">Select a Category</option>
+            @foreach (var category in ViewBag.Categories)
+            {
+                <option value="@category.CategoryId">@category.CategoryName</option>
+            }
+        </select>
     </div>
 
     <div style="margin-bottom: 10px;">
@@ -32,9 +41,15 @@
         <select asp-for="Rating" id="Rating" style="width: 200px; display: inline-block;">
             <option value=""></option>
             <option value="G">G</option>
+            <option value="NR">NR</option>
             <option value="PG">PG</option>
             <option value="PG-13">PG-13</option>
             <option value="R">R</option>
+            <option value="TV-14">TV-14</option>
+            <option value="TV-G">TV-G</option>
+            <option value="TV-PG">TV-PG</option>
+            <option value="TV-Y7">TV-Y7</option>
+            <option value="UR">UR</option>
         </select>
     </div>
 
@@ -42,14 +57,18 @@
         <label asp-for="Edited" style="width: 100px; text-align: right; display: inline-block;">Edited:</label>
         <select asp-for="Edited" id="Edited" style="width: 200px; display: inline-block;">
             <option value=""></option>
-            <option value="True">Yes</option>
-            <option value="False">No</option>
+            <option value="1">Yes</option>
+            <option value="0">No</option>
         </select>
     </div>
 
     <div style="margin-bottom: 10px;">
         <label asp-for="LentTo" style="width: 100px; text-align: right; display: inline-block;">Lent To:</label>
         <input asp-for="LentTo" style="width: 200px; display: inline-block;" />
+    </div>
+    <div style="margin-bottom: 10px;">
+        <label asp-for="CopiedToPlex" style="width: 100px; text-align: right; display: inline-block;">Copied To Plex:</label>
+        <input asp-for="CopiedToPlex" style="width: 200px; display: inline-block;" />
     </div>
 
     <div style="margin-bottom: 10px;">
@@ -58,5 +77,3 @@
     </div>
     <button type="submit">Submit the movie information!</button>
 </form>
-
-
